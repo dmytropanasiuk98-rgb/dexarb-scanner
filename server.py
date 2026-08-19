@@ -544,7 +544,8 @@ async def api_scan_top(long_ex: str, short_ex: str, min_spread: float = -100.0):
         
     return {"ok": True, "items": sorted(results, key=lambda x: x["entry_pct"], reverse=True)}
 
-# Fixed encoding
 if __name__ == "__main__":
+    import os
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
